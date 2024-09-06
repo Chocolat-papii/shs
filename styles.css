@@ -1,0 +1,314 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px 0;
+    width: 100%;   
+    
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    
+
+}
+
+nav ul li {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 2px;
+}
+
+nav ul li a:hover {
+    background-color: white;
+    color: #0056b3;
+    border-radius: 2px;
+    
+
+}
+
+a.active {
+    color: #d3d3d3;
+    border-bottom: solid #d3d3d3 2px;
+}
+
+#hero {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+ 
+}
+
+.container {
+    width: 100vw;
+    height: 80vh;
+    top: 0;
+    left: 0;
+    position: absolute;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80vh;
+    opacity: 0;
+    object-fit: cover;
+    animation: slideAnimation 20s infinite ease-in-out;
+}
+
+
+.wrapper img:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.wrapper img:nth-child(2) {
+    animation-delay: 5s;
+}
+
+.wrapper img:nth-child(3) {
+    animation-delay: 10s;
+}
+
+.wrapper img:nth-child(4) {
+    animation-delay: 15s;
+}
+
+@keyframes slideAnimation {
+    0%, 25%, 100% {opacity: 1;
+    }
+    30%, 95% {opacity: 0;
+    }
+
+    
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    
+}
+
+
+/* -------- cta buton ---------*/
+
+
+.cta {
+    margin: 20px auto;
+    border: none;
+    background: none;
+    width: 200px;
+}
+
+.cta-button {
+    background-color: #0056b3;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    text-transform: capitalize;
+    
+}
+
+.cta-button:hover {
+    padding: 4px 8px;
+    margin: 4px;
+    text-decoration-color: #0056b3;
+    
+    }
+/*  ---  SECTION  ---  */
+
+section {
+    padding: 20px 30px;
+    text-align: center;
+}
+section a, section a p {
+padding: 4px 8px;
+margin: 4px;
+text-decoration: none;
+color: inherit;
+
+}
+
+.service, .service-detail, .gallery-item, blockquote, form {
+    margin-bottom: 20px;
+}
+
+
+/*  ---  SERVICES  ---  */
+#services {
+margin: 20px 35px;
+
+}
+.service-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}
+
+
+.service-home {
+background-color: #d3d3d3;
+margin: 5px;
+width: 180px;
+padding: 15px;
+margin: 4px 2px;
+vertical-align: text-top;
+border-radius: 15px;
+box-shadow: 0 0 5px #333;
+}
+
+.service-detail img, .gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.service h3, h4 {
+    color: #0056b3;
+}
+
+/*  ---  GALLERY HOME PAGE  ---  */
+
+#gallery-link {
+background-image: url('Images/kitchen1.jpg');
+background-size: cover;
+margin: auto;
+width: auto;
+height: 80vh;
+background-position: center;
+
+}
+
+#gallery-link p {
+    position: relative;
+    text-align: center;
+    top: 85%;
+    padding: 8px;
+    color: #fff;
+    background-color: #0056b3;
+    border-radius: 2px;
+    width: auto;
+}
+
+/*  ---  GALLERY PAGE ---  */
+#gallery {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 80%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    border-top: 2px solid #0056b3;
+    border-bottom: 2px solid #0056b3;
+}
+
+.snap-inline {
+    scroll-snap-type: inline mandatory;
+}
+
+.snap-inline > * {
+    scroll-snap-align: start;
+
+}
+
+/*.gallery-item{
+    border: 0 1px solid #0056b3;
+    
+}*/ 
+
+.gallery-item img {
+    border-radius: 0;
+   inline-size: 100%;
+   aspect-ratio: 16/9;
+   object-fit: cover;
+ 
+}
+    
+/*  ---  HISTORY PAGE ---  */
+
+#history {
+    background-color: #f9f9f9;
+}
+#historyx {
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0 0 20px 0;
+}
+
+
+/*  ---  ABOUT PAGE ---  */
+
+#about {
+    margin: 20px 20px;
+}
+
+/*  ---  CONTACT/FORM PAGE---  */
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+form label {
+    margin-top: 10px;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #0056b3;
+    color: #fff;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #003f8a;
+}
+
+footer {
+    background-color: #0056b3;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
