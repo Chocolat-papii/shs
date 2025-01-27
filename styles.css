@@ -507,3 +507,16 @@ footer {
     transform: translateY(0);
     opacity: 1;
   }
+
+  /*top*/
+
+  .animate-me-top {
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.9s ease-in-out;
+  }
+  
+  .animate-me-bottom.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
