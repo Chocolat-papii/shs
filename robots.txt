@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://sollyshandymanservices.co.za/sitemap.xml
