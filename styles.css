@@ -86,7 +86,7 @@ span {
     background-size: cover;
     position: relative;
     width: auto;
-    height: 32vh;
+    height: 150px;
     margin: 0;
     padding: 0;
     display: flex;
@@ -219,11 +219,12 @@ border-radius: 15px;
 box-shadow: 0 0 5px #333;
 }
 
-.service-detail img, .gallery-item img {
+.service-detail img {
     width: 100%;
     height: auto;
     border-radius: 10px;
 }
+
 
 .service h3, h4 {
     color: #0056b3;
@@ -254,13 +255,14 @@ background-position: center;
 
 /*  ---  GALLERY PAGE ---  */
 #gallery {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 80%;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    border-top: 2px solid #0056b3;
-    border-bottom: 2px solid #0056b3;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* grid-auto-flow: column;
+    grid-auto-columns: 80%; */
+   
+    /* overscroll-behavior-inline: contain; */
+    /* border-bottom: 2px solid #0056b3; */
 }
 
 .snap-inline {
@@ -269,21 +271,44 @@ background-position: center;
 
 .snap-inline > * {
     scroll-snap-align: start;
-
 }
 
-/*.gallery-item{
+.gallery-item {
     border: 0 1px solid #0056b3;
-    
-}*/ 
+    margin: 10px;
+} 
 
 .gallery-item img {
+    margin: 0;
+    padding: 0;
     border-radius: 0;
-   inline-size: 100%;
-   aspect-ratio: 16/9;
-   object-fit: cover;
- 
+    inline-size: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    width: 300px;
+    height: 400px;
 }
+
+/* @media (min-width: 500px) {
+  .gallery-item img {
+    object-fit: contain;
+    width: 300px;
+    height: 400px;
+    }
+
+    .snap-inline {
+    scroll-snap-type: none;
+    }
+
+    .snap-inline > * {
+        scroll-snap-align: none;
+    }
+
+    #gallery {
+        overscroll-behavior-inline: none;
+    }
+} */
+
     
 /*  ---  HISTORY PAGE ---  */
 
