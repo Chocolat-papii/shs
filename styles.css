@@ -182,6 +182,7 @@ section {
     overflow-x: hidden;
     overflow-y: hidden;
 }
+
 section a, section a p {
 padding: 4px 8px;
 margin: 4px;
@@ -209,6 +210,7 @@ margin: 20px 35px;
 
 
 .service-home {
+text-align: left;
 background-color: #d3d3d3;
 margin: 5px;
 width: 250px;
@@ -289,25 +291,40 @@ background-position: center;
     height: 400px;
 }
 
-/* @media (min-width: 500px) {
-  .gallery-item img {
-    object-fit: contain;
-    width: 300px;
-    height: 400px;
-    }
+#image-viewer {
+    position: fixed;
+    inset: 0; 
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s ease;
+    z-index: 9999;
+}
 
-    .snap-inline {
-    scroll-snap-type: none;
-    }
+#image-viewer.open {
+    opacity: 1;
+    pointer-events: auto;
+}
 
-    .snap-inline > * {
-        scroll-snap-align: none;
-    }
+#viewer-img {
+    max-width: 90%;
+    max-height: 90%;
+    user-select: none;
+}
 
-    #gallery {
-        overscroll-behavior-inline: none;
-    }
-} */
+#viewer-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+}
+
 
     
 /*  ---  HISTORY PAGE ---  */

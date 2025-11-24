@@ -1,67 +1,81 @@
-// Select all images with the class '.gallery-item'
-const images = document.querySelectorAll('.gallery-item');
+// === Fullscreen Image Viewer ===
+
+// Get all gallery images inside #gallery
+const galleryImages = document.querySelectorAll('#gallery .gallery-item img');
+
+const viewer = document.getElementById('image-viewer');
+const viewerImg = document.getElementById('viewer-img');
+const closeBtn = document.getElementById('viewer-close');
+
 let currentIndex = 0;
+let startX = 0;
+let endX = 0;
 
-// Function to open an image in fullscreen mode
-function openFullscreen(image, index) {
-    currentIndex = index; // Set the current image index
-    if (image.requestFullscreen) {
-        image.requestFullscreen();
-    } else if (image.webkitRequestFullscreen) { // Safari compatibility
-        image.webkitRequestFullscreen();
-    } else if (image.msRequestFullscreen) { // IE/Edge compatibility
-        image.msRequestFullscreen();
-    } else {
-        alert('Fullscreen API is not supported by your browser.');
+// ----- Open Viewer -----
+galleryImages.forEach((img, index) => {
+    img.addEventListener('click', () => {
+        currentIndex = index;
+        openViewer();
+    });
+});
+
+function openViewer() {
+    viewerImg.src = galleryImages[currentIndex].src;
+    viewer.classList.add('open');
+}
+
+// ----- Close Viewer -----
+closeBtn.addEventListener('click', closeViewer);
+
+function closeViewer() {
+    viewer.classList.remove('open');
+}
+
+// ----- Next / Previous -----
+function showNext() {
+    currentIndex = (currentIndex + 1) % galleryImages.length;
+    openViewer();
+}
+
+function showPrev() {
+    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+    openViewer();
+}
+
+// ----- Touch Swipe (Mobile) -----
+viewer.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+});
+
+viewer.addEventListener('touchend', e => {
+    endX = e.changedTouches[0].clientX;
+    handleSwipe();
+});
+
+// ----- Mouse Drag (Desktop) -----
+viewer.addEventListener('mousedown', e => {
+    startX = e.clientX;
+});
+
+viewer.addEventListener('mouseup', e => {
+    endX = e.clientX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    const diff = endX - startX;
+    if (Math.abs(diff) > 60) {
+        diff > 0 ? showPrev() : showNext();
     }
 }
 
-// Function to show the next or previous image
-function slideImage(direction) {
-    const totalImages = images.length;
-    currentIndex = (currentIndex + direction + totalImages) % totalImages;
-    const image = images[currentIndex];
-    openFullscreen(image, currentIndex);
-}
+// ----- Keyboard arrows + ESC -----
+document.addEventListener('keydown', e => {
+    if (!viewer.classList.contains('open')) return;
 
-// Add click event listener to each image
-images.forEach((image, index) => {
-    image.addEventListener('click', () => openFullscreen(image, index));
-});
-
-// Add keyboard navigation in fullscreen mode
-document.addEventListener('keydown', (event) => {
-    if (document.fullscreenElement) {
-        if (event.key === 'ArrowRight') {
-            slideImage(1); // Next image
-        } else if (event.key === 'ArrowLeft') {
-            slideImage(-1); // Previous image
-        }
-    }
-});
-
-
-
-// Add touch gestures for mobile
-document.addEventListener('touchstart', (event) => {
-    if (document.fullscreenElement) {
-        startX = event.touches[0].clientX; // Record the starting touch position
-    }
-});
-
-document.addEventListener('touchend', (event) => {
-    if (document.fullscreenElement) {
-        endX = event.changedTouches[0].clientX; // Record the ending touch position
-        const diff = endX - startX;
-
-        if (Math.abs(diff) > 50) { // Threshold to detect swipe
-            if (diff > 0) {
-                slideImage(-1); // Swipe right (previous image)
-            } else {
-                slideImage(1); // Swipe left (next image)
-            }
-        }
-    }
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'Escape') closeViewer();
 });
 
 ///////// section for ELEMENT  ANIMATIONS //////////
